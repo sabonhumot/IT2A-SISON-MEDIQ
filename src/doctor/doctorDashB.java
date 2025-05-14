@@ -417,9 +417,14 @@ public class doctorDashB extends javax.swing.JFrame {
     
     private void noAppointments() {
         if (!hasAppointmentsToday && !hasAppointmentsTomorrow) {
-            noAppPanel.setVisible(false);
-        } else {
             noAppPanel.setVisible(true);
+            schedToday.setVisible(false);
+            schedTomorrow.setVisible(false);
+            
+        } else {
+            noAppPanel.setVisible(false);
+            schedToday.setVisible(true);
+            schedTomorrow.setVisible(true);
         }
     }
 

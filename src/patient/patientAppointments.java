@@ -480,6 +480,13 @@ public class patientAppointments extends javax.swing.JFrame {
 
     private void dashboardPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardPanelMouseClicked
 
+        
+        patientDashB pdb = new patientDashB();
+        
+        pdb.setVisible(true);
+        this.dispose();
+        
+        
     }//GEN-LAST:event_dashboardPanelMouseClicked
 
     private void dashboardPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardPanelMouseEntered
@@ -526,11 +533,13 @@ public class patientAppointments extends javax.swing.JFrame {
     }//GEN-LAST:event_bookAppointmentMouseClicked
 
     private void bookAppointmentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookAppointmentMouseEntered
-        // TODO add your handling code here:
+        bookAppointment.setBackground(hoverColor);
     }//GEN-LAST:event_bookAppointmentMouseEntered
 
     private void bookAppointmentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookAppointmentMouseExited
-        // TODO add your handling code here:
+        
+        bookAppointment.setBackground(mainColor);
+        
     }//GEN-LAST:event_bookAppointmentMouseExited
 
     private void jLabel16MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseEntered
