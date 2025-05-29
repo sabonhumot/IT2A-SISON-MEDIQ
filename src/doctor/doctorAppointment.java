@@ -60,6 +60,7 @@ public class doctorAppointment extends javax.swing.JFrame {
         delete = new gfx.RoundGradientButton ("Delete", new Color(220, 53, 69), new Color(255, 0, 0), 30);
         refresh = new gfx.RoundGradientButton ("Refresh", new Color(25, 175, 219), new Color(21, 162, 203), 30);
         activate = new gfx.RoundGradientButton ("Add Patient", new Color(40, 167, 69), new Color(0, 208, 132), 30);
+        addDiagnosis = new gfx.RoundGradientButton ("Add Patient", new Color(40, 167, 69), new Color(0, 208, 132), 30);
         jPanel4 = new RoundedPanel(15);
         appCount = new javax.swing.JLabel();
         qwe = new javax.swing.JLabel();
@@ -175,6 +176,23 @@ public class doctorAppointment extends javax.swing.JFrame {
         });
         dboardBG.add(activate);
         activate.setBounds(270, 50, 130, 30);
+
+        addDiagnosis.setForeground(new java.awt.Color(255, 255, 255));
+        addDiagnosis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
+        addDiagnosis.setText("Add Diagnosis");
+        addDiagnosis.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        addDiagnosis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addDiagnosisMouseClicked(evt);
+            }
+        });
+        addDiagnosis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDiagnosisActionPerformed(evt);
+            }
+        });
+        dboardBG.add(addDiagnosis);
+        addDiagnosis.setBounds(720, 50, 120, 30);
 
         dboard.add(dboardBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 860, 490));
 
@@ -574,11 +592,16 @@ public class doctorAppointment extends javax.swing.JFrame {
     }//GEN-LAST:event_bookAppointmentMouseClicked
 
     private void bookAppointmentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookAppointmentMouseEntered
-        // TODO add your handling code here:
+        
+        bookAppointment.setBackground(hoverColor);
+        
+        
     }//GEN-LAST:event_bookAppointmentMouseEntered
 
     private void bookAppointmentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookAppointmentMouseExited
-        // TODO add your handling code here:
+        
+        bookAppointment.setBackground(mainColor);
+        
     }//GEN-LAST:event_bookAppointmentMouseExited
 
     private void jLabel16MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseEntered
@@ -633,6 +656,40 @@ public class doctorAppointment extends javax.swing.JFrame {
 
     }//GEN-LAST:event_activateActionPerformed
 
+    private void addDiagnosisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addDiagnosisMouseClicked
+
+    }//GEN-LAST:event_addDiagnosisMouseClicked
+
+    private void addDiagnosisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDiagnosisActionPerformed
+
+       int selectedRow = appointmentsTable.getSelectedRow();
+       
+       if (selectedRow == -1) {
+           JOptionPane.showMessageDialog(this, "Please select a row to edit.");
+           return;
+       }
+       
+       String status = appointmentsTable.getValueAt(selectedRow, 5).toString();
+       
+       if (!status.equalsIgnoreCase("Accepted")) {
+            
+           JOptionPane.showMessageDialog(this, "Only accepted appointments can be diagnosed.");
+           return;
+           
+       }
+       
+       String appointmentId = appointmentsTable.getValueAt(selectedRow, 0).toString();
+       String pname = appointmentsTable.getValueAt(selectedRow, 1).toString();
+       String pnotes = appointmentsTable.getValueAt(selectedRow, 4).toString();
+       
+       diagnosisForm diagForm = new diagnosisForm(appointmentId, pname, pnotes);
+       
+       diagForm.setVisible(true);
+       
+        
+        
+    }//GEN-LAST:event_addDiagnosisActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -670,6 +727,7 @@ public class doctorAppointment extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton activate;
+    private javax.swing.JButton addDiagnosis;
     private javax.swing.JLabel appCount;
     private javax.swing.JTable appointmentsTable;
     private javax.swing.JPanel bookAppointment;

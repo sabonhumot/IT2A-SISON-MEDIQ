@@ -39,7 +39,7 @@ public class appointmentForm extends javax.swing.JFrame {
 
     public appointmentForm() {
         initComponents();
-        getDoctorNames();
+//        getDoctorNames();
 
     }
 
@@ -58,7 +58,7 @@ public class appointmentForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new RoundGradientButton("Sign Up", new Color(131, 164, 212), new Color(182, 251, 255), 35);
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        doctorComboBox = new javax.swing.JComboBox<>();
         jTextField1 = new RoundedTextField(15);
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -70,6 +70,9 @@ public class appointmentForm extends javax.swing.JFrame {
         dateError = new javax.swing.JLabel();
         timeError = new javax.swing.JLabel();
         symptomsError = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        specialtyComboBox = new javax.swing.JComboBox<>();
+        specialtyError = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -103,7 +106,7 @@ public class appointmentForm extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 150, 50));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 650, 150, 50));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/close.png"))); // NOI18N
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -114,37 +117,37 @@ public class appointmentForm extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 30, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(Select your doctor)" }));
-        jComboBox1.addFocusListener(new java.awt.event.FocusAdapter() {
+        doctorComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(Select your doctor)" }));
+        doctorComboBox.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jComboBox1FocusLost(evt);
+                doctorComboBoxFocusLost(evt);
             }
         });
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        doctorComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                doctorComboBoxActionPerformed(evt);
             }
         });
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 330, 40));
+        jPanel2.add(doctorComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 330, 40));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 330, 100));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, 330, 100));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("Additional notes: ");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 200, 20));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, 200, 20));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel7.setText("Doctor");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 180, 20));
+        jLabel7.setText("Specialty");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 180, 20));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel9.setText("Time (HH:MM):");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 180, 20));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 180, 20));
 
         try  {
             MaskFormatter timeFormatter = new MaskFormatter ("##:##");
@@ -157,11 +160,11 @@ public class appointmentForm extends javax.swing.JFrame {
                 timeFocusLost(evt);
             }
         });
-        jPanel2.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 330, 40));
+        jPanel2.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 330, 40));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel10.setText("Date (YYYY/MM/DD):");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 180, 20));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 180, 20));
 
         try  {
             MaskFormatter dateFormatter = new MaskFormatter("####/##/##");
@@ -174,11 +177,29 @@ public class appointmentForm extends javax.swing.JFrame {
                 dateFocusLost(evt);
             }
         });
-        jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 330, 40));
-        jPanel2.add(doctorError, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 200, 20));
-        jPanel2.add(dateError, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 200, 20));
-        jPanel2.add(timeError, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 210, 20));
-        jPanel2.add(symptomsError, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 530, 200, 20));
+        jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 330, 40));
+        jPanel2.add(doctorError, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 200, 20));
+        jPanel2.add(dateError, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 200, 20));
+        jPanel2.add(timeError, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, 210, 20));
+        jPanel2.add(symptomsError, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 620, 200, 20));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel11.setText("Doctor");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 180, 20));
+
+        specialtyComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(Select doctor specialty)", "Pediatrics", "Optomology", "Internal Medicine", "Dermatology", "Neurology", "Surgery", "Gynecology" }));
+        specialtyComboBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                specialtyComboBoxFocusLost(evt);
+            }
+        });
+        specialtyComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                specialtyComboBoxActionPerformed(evt);
+            }
+        });
+        jPanel2.add(specialtyComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 330, 40));
+        jPanel2.add(specialtyError, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 200, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,11 +213,9 @@ public class appointmentForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 664, Short.MAX_VALUE)
+            .addGap(0, 740, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE))
         );
 
         pack();
@@ -213,9 +232,11 @@ public class appointmentForm extends javax.swing.JFrame {
 
         connectDB con = new connectDB();
 
+        String specialty = (String) specialtyComboBox.getSelectedItem();
+
         try {
 
-            ResultSet rs = con.getData("SELECT u_id, CONCAT ('Dr. ', u_fname, ' ', u_lname) AS doctor_name FROM user WHERE type = 'Doctor'");
+            ResultSet rs = con.getData("SELECT u_id, CONCAT ('Dr. ', u_fname, ' ', u_lname) AS doctor_name FROM user WHERE type = 'Doctor'  AND specialty = '" + specialty + "'");
 
             doctorMap = new HashMap<>();
 
@@ -223,15 +244,16 @@ public class appointmentForm extends javax.swing.JFrame {
 
                 int doctorId = rs.getInt("u_id");
                 String doctorName = rs.getString("doctor_name");
+                System.out.println("Found doctor: " + doctorName + " (ID: " + doctorId + ")");
 
-                jComboBox1.addItem(doctorName);
+                doctorComboBox.addItem(doctorName);
 
                 doctorMap.put(doctorName, doctorId);
 
             }
 
         } catch (SQLException e) {
-
+            JOptionPane.showMessageDialog(null, "Error fetching doctor data: " + e.getMessage());
         }
 
     }
@@ -249,7 +271,7 @@ public class appointmentForm extends javax.swing.JFrame {
             connectDB conn = new connectDB();
             session sess = session.getInstance();
 
-            String doctor = (String) jComboBox1.getSelectedItem();
+            String doctor = (String) doctorComboBox.getSelectedItem();
 
             int doctorId = doctorMap.get(doctor);
 
@@ -274,29 +296,29 @@ public class appointmentForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void doctorComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_doctorComboBoxActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jComboBox1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1FocusLost
+    private void doctorComboBoxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_doctorComboBoxFocusLost
 
-        if (jComboBox1.getSelectedIndex() == 0) {
-            jComboBox1.setForeground(Color.RED);
+        if (doctorComboBox.getSelectedIndex() == 0) {
+            doctorComboBox.setForeground(Color.RED);
             doctorError.setText("Please choose a Doctor");
             doctorError.setForeground(Color.RED);
         } else {
-            jComboBox1.setForeground(Color.BLACK);
+            doctorComboBox.setForeground(Color.BLACK);
             doctorError.setText("");
         }
 
-        jComboBox1.repaint();
+        doctorComboBox.repaint();
 
 
-    }//GEN-LAST:event_jComboBox1FocusLost
+    }//GEN-LAST:event_doctorComboBoxFocusLost
 
     private void dateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dateFocusLost
 
@@ -344,6 +366,7 @@ public class appointmentForm extends javax.swing.JFrame {
             try {
                 LocalTime starting_time = LocalTime.of(9, 0);
                 LocalTime end_time = LocalTime.of(17, 0);
+                LocalTime current_time = LocalTime.now();
 
                 LocalTime inputTime = LocalTime.parse(time.getText().trim());
 
@@ -351,6 +374,12 @@ public class appointmentForm extends javax.swing.JFrame {
                     time.setForeground(Color.RED);
                     timeError.setText("Time must be between 9:00 and 17:00");
                     timeError.setForeground(Color.RED);
+                } else if (inputTime.isBefore(current_time)) {
+
+                    time.setForeground(Color.RED);
+                    timeError.setText("Time should not be in the past");
+                    timeError.setForeground(Color.RED);
+
                 } else {
                     time.setForeground(Color.BLACK);
                     timeError.setText("");
@@ -370,21 +399,65 @@ public class appointmentForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_timeFocusLost
 
+    private void specialtyComboBoxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_specialtyComboBoxFocusLost
+        if (specialtyComboBox.getSelectedIndex() == 0) {
+            specialtyComboBox.setForeground(Color.RED);
+            specialtyError.setText("Please choose a Doctor");
+            specialtyError.setForeground(Color.RED);
+        } else {
+            specialtyComboBox.setForeground(Color.BLACK);
+            specialtyError.setText("");
+        }
+
+        specialtyComboBox.repaint();
+    }//GEN-LAST:event_specialtyComboBoxFocusLost
+
+    private void specialtyComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specialtyComboBoxActionPerformed
+
+        connectDB con = new connectDB();
+
+        String specialty = (String) specialtyComboBox.getSelectedItem();
+
+        try {
+
+            ResultSet rs = con.getData("SELECT u_id, CONCAT ('Dr. ', u_fname, ' ', u_lname) AS doctor_name FROM user WHERE type = 'Doctor'  AND specialty = '" + specialty + "'");
+
+            doctorMap = new HashMap<>();
+
+            while (rs.next()) {
+
+                int doctorId = rs.getInt("u_id");
+                String doctorName = rs.getString("doctor_name");
+                System.out.println("Found doctor: " + doctorName + " (ID: " + doctorId + ")");
+
+                doctorComboBox.addItem(doctorName);
+
+                doctorMap.put(doctorName, doctorId);
+
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error fetching doctor data: " + e.getMessage());
+        }
+
+
+    }//GEN-LAST:event_specialtyComboBoxActionPerformed
+
     public boolean signUpValidation() {
 
         boolean valid = true;
 
-        if (jComboBox1.getSelectedIndex() == 0) {
-            jComboBox1.setForeground(Color.RED);
+        if (doctorComboBox.getSelectedIndex() == 0) {
+            doctorComboBox.setForeground(Color.RED);
             doctorError.setText("Please choose a Doctor");
-            jComboBox1.setForeground(Color.RED);
+            doctorComboBox.setForeground(Color.RED);
             valid = false;
         } else {
-            jComboBox1.setForeground(Color.BLACK);
+            doctorComboBox.setForeground(Color.BLACK);
             doctorError.setText("");
         }
 
-        jComboBox1.repaint();
+        doctorComboBox.repaint();
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
@@ -392,6 +465,7 @@ public class appointmentForm extends javax.swing.JFrame {
             date.setForeground(Color.RED);
             dateError.setText("Please set a valid date");
             dateError.setForeground(Color.RED);
+            valid = false;
         } else {
             try {
 
@@ -402,6 +476,7 @@ public class appointmentForm extends javax.swing.JFrame {
                     date.setForeground(Color.RED);
                     dateError.setText("Date cannot be in the past");
                     dateError.setForeground(Color.RED);
+                    valid = false;
                 } else {
                     date.setForeground(Color.BLACK);
                     dateError.setText("");
@@ -413,6 +488,7 @@ public class appointmentForm extends javax.swing.JFrame {
                 dateError.setText("Invalid date format. Use YYYY/MM/DD");
                 dateError.setForeground(Color.RED);
                 System.out.println("" + ex);
+                valid = false;
             }
         }
 
@@ -422,10 +498,12 @@ public class appointmentForm extends javax.swing.JFrame {
             time.setForeground(Color.RED);
             timeError.setText("Please set a valid time");
             timeError.setForeground(Color.RED);
+            valid = false;
         } else {
             try {
                 LocalTime starting_time = LocalTime.of(9, 0);
                 LocalTime end_time = LocalTime.of(17, 0);
+                LocalTime current_time = LocalTime.now();
 
                 LocalTime inputTime = LocalTime.parse(time.getText().trim());
 
@@ -433,6 +511,12 @@ public class appointmentForm extends javax.swing.JFrame {
                     time.setForeground(Color.RED);
                     timeError.setText("Time must be between 9:00 and 17:00");
                     timeError.setForeground(Color.RED);
+                    valid = false;
+                } else if (inputTime.isBefore(current_time)) {
+                    time.setForeground(Color.RED);
+                    timeError.setText("Time must not be in the past");
+                    timeError.setForeground(Color.RED);
+                    valid = false;
                 } else {
                     time.setForeground(Color.BLACK);
                     timeError.setText("");
@@ -443,11 +527,24 @@ public class appointmentForm extends javax.swing.JFrame {
                 timeError.setText("Invalid time format. Use HH:mm.");
                 timeError.setForeground(Color.RED);
                 System.out.println("" + ex);
+                valid = false;
             }
 
         }
 
         time.repaint();
+
+        if (specialtyComboBox.getSelectedIndex() == 0) {
+            specialtyComboBox.setForeground(Color.RED);
+            specialtyError.setText("Please choose a Doctor");
+            specialtyError.setForeground(Color.RED);
+            valid = false;
+        } else {
+            specialtyComboBox.setForeground(Color.BLACK);
+            specialtyError.setText("");
+        }
+
+        specialtyComboBox.repaint();
 
         return valid;
     }
@@ -501,11 +598,12 @@ public class appointmentForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField date;
     private javax.swing.JLabel dateError;
+    private javax.swing.JComboBox<String> doctorComboBox;
     private javax.swing.JLabel doctorError;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -514,6 +612,8 @@ public class appointmentForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> specialtyComboBox;
+    private javax.swing.JLabel specialtyError;
     private javax.swing.JLabel symptomsError;
     private javax.swing.JTextField time;
     private javax.swing.JLabel timeError;

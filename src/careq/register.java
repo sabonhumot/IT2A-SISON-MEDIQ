@@ -49,6 +49,9 @@ public class register extends javax.swing.JFrame {
         showCPass.setVisible(true);
         hideCPass.setVisible(false);
 
+        specialty.setVisible(false);
+        jLabel13.setVisible(false);
+
     }
 
     private boolean emailExists(String email) {
@@ -163,6 +166,9 @@ public class register extends javax.swing.JFrame {
         maleButton = new javax.swing.JRadioButton();
         dateError = new javax.swing.JLabel();
         sexLabelError = new javax.swing.JLabel();
+        specialty = new javax.swing.JComboBox<>();
+        errorSpecialty = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         this.pack();
         this.setLocationRelativeTo(null);
@@ -473,7 +479,7 @@ public class register extends javax.swing.JFrame {
                 typeActionPerformed(evt);
             }
         });
-        jPanel2.add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 490, 430, 40));
+        jPanel2.add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 490, 200, 40));
 
         jLabel12.setText("Type");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 70, -1));
@@ -528,6 +534,25 @@ public class register extends javax.swing.JFrame {
         jPanel2.add(dateError, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 200, 20));
         jPanel2.add(sexLabelError, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 200, 20));
 
+        specialty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(Choose specialty)", "Pediatrics", "Optomology", "Internal Medicine", "Dermatology", "Neurology", "Surgery", "Gynecology" }));
+        specialty.setBorder(null);
+        specialty.setOpaque(false);
+        specialty.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                specialtyFocusLost(evt);
+            }
+        });
+        specialty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                specialtyActionPerformed(evt);
+            }
+        });
+        jPanel2.add(specialty, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 490, 210, 40));
+        jPanel2.add(errorSpecialty, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 530, 190, 20));
+
+        jLabel13.setText("Specialty");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 470, 70, -1));
+
         register.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 630, 910));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -577,18 +602,17 @@ public class register extends javax.swing.JFrame {
                 String hashedPW = pwHasher.hashPassword(pass.getText());
 
                 int age = AgeCalculator(birthdate);
-                
-                
+
                 if (maleButton.isSelected()) {
                     sex = "Male";
                 } else if (femaleButton.isSelected()) {
                     sex = "Female";
                 }
 
-                con.insertData("INSERT INTO user (u_fname, u_lname, u_email, u_pnum, u_user, u_pass, type, status, age, sex)"
+                con.insertData("INSERT INTO user (u_fname, u_lname, u_email, u_pnum, u_user, u_pass, type, status, age, sex, specialty)"
                         + "VALUES ('" + firstname.getText() + "','" + lastname.getText() + "','" + email.getText() + "',"
                         + "'" + phonennum.getText() + "','" + username.getText() + "','" + hashedPW + "',"
-                        + "'" + type.getSelectedItem() + "', 'Pending', '" + age + "', '" + sex + "')");
+                        + "'" + type.getSelectedItem() + "', 'Pending', '" + age + "', '" + sex + "', '" + specialty.getSelectedItem() + "')");
 
                 JOptionPane.showMessageDialog(this, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
@@ -881,6 +905,16 @@ public class register extends javax.swing.JFrame {
 
     private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
 
+        if (type.getSelectedItem().equals("Doctor")) {
+
+            specialty.setVisible(true);
+            jLabel13.setVisible(true);
+
+        } else {
+            specialty.setVisible(false);
+            jLabel13.setVisible(false);
+        }
+
 
     }//GEN-LAST:event_typeActionPerformed
 
@@ -962,6 +996,33 @@ public class register extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_maleButtonActionPerformed
+
+    private void specialtyFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_specialtyFocusLost
+
+        if ("Doctor".equals(type.getSelectedItem())) {
+            if (specialty.getSelectedIndex() == 0) {
+                specialty.setForeground(Color.RED);
+                errorSpecialty.setText("Please choose your specialty");
+                errorSpecialty.setForeground(Color.RED);
+            } else {
+                specialty.setForeground(Color.BLACK);
+                errorSpecialty.setText("");
+            }
+            specialty.repaint();
+        } else {
+            // Clear error if not Doctor
+            specialty.setForeground(Color.BLACK);
+            errorSpecialty.setText("");
+            specialty.repaint();
+        }
+
+
+    }//GEN-LAST:event_specialtyFocusLost
+
+    private void specialtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specialtyActionPerformed
+
+
+    }//GEN-LAST:event_specialtyActionPerformed
 
     private boolean signUpValidation() {
         boolean valid = true;
@@ -1183,6 +1244,19 @@ public class register extends javax.swing.JFrame {
 
         birthdate.repaint();
 
+        if ("Doctor".equals(type.getSelectedItem())) {
+            if (specialty.getSelectedIndex() == 0) {
+                specialty.setForeground(Color.RED);
+                errorSpecialty.setText("Please choose your specialty");
+                errorSpecialty.setForeground(Color.RED);
+                valid = false;
+            } else {
+                specialty.setForeground(Color.BLACK);
+                errorSpecialty.setText("");
+            }
+            specialty.repaint();
+        }
+
         return valid;
     }
 
@@ -1266,6 +1340,7 @@ public class register extends javax.swing.JFrame {
     private javax.swing.JLabel errorLabelPnum;
     private javax.swing.JLabel errorLabelUser;
     private javax.swing.JLabel errorSQ;
+    private javax.swing.JLabel errorSpecialty;
     private javax.swing.JLabel errorType;
     private javax.swing.JRadioButton femaleButton;
     private javax.swing.JTextField firstname;
@@ -1278,6 +1353,7 @@ public class register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1302,6 +1378,7 @@ public class register extends javax.swing.JFrame {
     private javax.swing.JLabel showPass;
     private javax.swing.JDialog signupError;
     private javax.swing.JDialog signupSuccess;
+    private javax.swing.JComboBox<String> specialty;
     private javax.swing.JComboBox<String> type;
     private javax.swing.JLabel user;
     private javax.swing.JLabel user1;

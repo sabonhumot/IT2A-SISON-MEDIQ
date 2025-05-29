@@ -44,7 +44,7 @@ public class patientDashB extends javax.swing.JFrame {
 
     Color logoutColor = new Color(100, 188, 234);
     Color hoverlogoutColor = new Color(250, 249, 246);
-    
+
     boolean hasAppointmentsToday = false;
     boolean hasAppointmentsTomorrow = false;
 
@@ -113,6 +113,9 @@ public class patientDashB extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         profile = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        diagnosisPanel = new RoundedPanel(50);
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -369,10 +372,34 @@ public class patientDashB extends javax.swing.JFrame {
         profile.setText("Profile");
         profilePanel.add(profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 100, 50));
 
-        jPanel1.add(profilePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 190, -1));
+        jPanel1.add(profilePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 190, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        diagnosisPanel.setBackground(new java.awt.Color(37, 171, 241));
+        diagnosisPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        diagnosisPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diagnosisPanelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                diagnosisPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                diagnosisPanelMouseExited(evt);
+            }
+        });
+        diagnosisPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/diagnosis.png"))); // NOI18N
+        diagnosisPanel.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 50));
+
+        jLabel19.setForeground(new java.awt.Color(250, 249, 246));
+        jLabel19.setText("Diagnosis");
+        diagnosisPanel.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 30));
+
+        jPanel1.add(diagnosisPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 190, 50));
 
         mainbg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 700));
 
@@ -396,13 +423,12 @@ public class patientDashB extends javax.swing.JFrame {
             noAppPanel.setVisible(true);
             schedToday.setVisible(false);
             schedTomorrow.setVisible(false);
-            
-            
+
         } else {
             noAppPanel.setVisible(false);
             schedToday.setVisible(true);
             schedTomorrow.setVisible(true);
-            
+
         }
     }
 
@@ -611,9 +637,8 @@ public class patientDashB extends javax.swing.JFrame {
             return null;
         }
     }
-    
-    
-    
+
+
     private void dashboardPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardPanelMouseClicked
 
     }//GEN-LAST:event_dashboardPanelMouseClicked
@@ -672,7 +697,7 @@ public class patientDashB extends javax.swing.JFrame {
     }//GEN-LAST:event_bookAppointmentMouseEntered
 
     private void bookAppointmentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookAppointmentMouseExited
-        bookAppointment.setBackground(hoverColor);
+        bookAppointment.setBackground(mainColor);
     }//GEN-LAST:event_bookAppointmentMouseExited
 
     private void jLabel16MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseEntered
@@ -695,6 +720,28 @@ public class patientDashB extends javax.swing.JFrame {
 
         profilePanel.setBackground(mainColor);
     }//GEN-LAST:event_profilePanelMouseExited
+
+    private void diagnosisPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diagnosisPanelMouseClicked
+        
+        patientDiagnosis pDg = new patientDiagnosis();
+        
+        pDg.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_diagnosisPanelMouseClicked
+
+    private void diagnosisPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diagnosisPanelMouseEntered
+
+        diagnosisPanel.setBackground(hoverColor);
+
+
+    }//GEN-LAST:event_diagnosisPanelMouseEntered
+
+    private void diagnosisPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diagnosisPanelMouseExited
+
+        diagnosisPanel.setBackground(mainColor);
+
+    }//GEN-LAST:event_diagnosisPanelMouseExited
 
     private void accountInformation() {
 
@@ -765,6 +812,7 @@ public class patientDashB extends javax.swing.JFrame {
     private javax.swing.JPanel dashboardPanel;
     private javax.swing.JPanel dboard;
     private javax.swing.JPanel dboardBG;
+    private javax.swing.JPanel diagnosisPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -774,6 +822,8 @@ public class patientDashB extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

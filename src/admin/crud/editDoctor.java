@@ -31,8 +31,15 @@ public class editDoctor extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public editDoctor() {
+    public editDoctor(String id, String fname, String lname, String eMail, String pnum) {
         initComponents();
+
+        idField.setText(id);
+        firstname.setText(fname);
+        lastname.setText(lname);
+        phonennum.setText(pnum);
+        email.setText(eMail);
+
     }
 
     /**
@@ -49,30 +56,19 @@ public class editDoctor extends javax.swing.JFrame {
         firstname = new RoundedTextField(35);
         lastname = new RoundedTextField(35);
         phonennum = new RoundedTextField(35);
-        showCPass = new javax.swing.JLabel();
-        hideCPass = new javax.swing.JLabel();
-        cpass = new RoundedPasswordField(35);
-        showPass = new javax.swing.JLabel();
-        hidePass = new javax.swing.JLabel();
-        pass = new RoundedPasswordField(35);
         jButton2 = new RoundGradientButton("Sign Up", new Color(131, 164, 212), new Color(182, 251, 255), 35);
         email = new RoundedTextField(35);
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        errorLabelCPass = new javax.swing.JLabel();
         errorLabelFName = new javax.swing.JLabel();
         errorLabelLName = new javax.swing.JLabel();
         errorLabelPnum = new javax.swing.JLabel();
         errorLabelEmail = new javax.swing.JLabel();
-        errorLabelPass = new javax.swing.JLabel();
-        username = new RoundedTextField(35);
         user = new javax.swing.JLabel();
-        errorLabelUser = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        idd = new javax.swing.JLabel();
+        idField = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -86,8 +82,8 @@ public class editDoctor extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 26)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Add Patient");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 160, 40));
+        jLabel1.setText("Edit Doctor Information");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 320, 40));
 
         firstname.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         firstname.setOpaque(false);
@@ -101,7 +97,7 @@ public class editDoctor extends javax.swing.JFrame {
                 firstnameActionPerformed(evt);
             }
         });
-        jPanel2.add(firstname, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 200, 40));
+        jPanel2.add(firstname, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 460, 40));
 
         lastname.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         lastname.setOpaque(false);
@@ -115,7 +111,7 @@ public class editDoctor extends javax.swing.JFrame {
                 lastnameActionPerformed(evt);
             }
         });
-        jPanel2.add(lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 210, 40));
+        jPanel2.add(lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 460, 40));
 
         phonennum.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         phonennum.setOpaque(false);
@@ -129,66 +125,7 @@ public class editDoctor extends javax.swing.JFrame {
                 phonennumActionPerformed(evt);
             }
         });
-        jPanel2.add(phonennum, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 200, 40));
-
-        showCPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/view.png"))); // NOI18N
-        showCPass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        showCPass.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                showCPassMouseClicked(evt);
-            }
-        });
-        jPanel2.add(showCPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, 30, 40));
-
-        hideCPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hide.png"))); // NOI18N
-        hideCPass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        hideCPass.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                hideCPassMouseClicked(evt);
-            }
-        });
-        jPanel2.add(hideCPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, 30, 40));
-
-        cpass.setOpaque(false);
-        cpass.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                cpassFocusLost(evt);
-            }
-        });
-        jPanel2.add(cpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 200, 40));
-
-        showPass.setForeground(new java.awt.Color(102, 102, 102));
-        showPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/view.png"))); // NOI18N
-        showPass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        showPass.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                showPassMouseClicked(evt);
-            }
-        });
-        jPanel2.add(showPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 30, 40));
-
-        hidePass.setForeground(new java.awt.Color(102, 102, 102));
-        hidePass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hide.png"))); // NOI18N
-        hidePass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        hidePass.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                hidePassMouseClicked(evt);
-            }
-        });
-        jPanel2.add(hidePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 30, 40));
-
-        pass.setOpaque(false);
-        pass.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                passFocusLost(evt);
-            }
-        });
-        pass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passActionPerformed(evt);
-            }
-        });
-        jPanel2.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 200, 40));
+        jPanel2.add(phonennum, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 460, 40));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton2.setForeground(new java.awt.Color(250, 249, 246));
@@ -200,7 +137,7 @@ public class editDoctor extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, 150, 50));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 560, 150, 50));
 
         email.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         email.setOpaque(false);
@@ -214,64 +151,26 @@ public class editDoctor extends javax.swing.JFrame {
                 emailActionPerformed(evt);
             }
         });
-        jPanel2.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 210, 40));
+        jPanel2.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 460, 40));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Email Address");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 190, 20));
-
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel3.setText("Username");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 170, 20));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 190, 20));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Last Name");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 160, 20));
-
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel5.setText("Confirm Password");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 200, 20));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 160, 20));
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("Phone Number");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 180, 20));
-
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel7.setText("Password");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 170, 20));
-
-        errorLabelCPass.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                errorLabelCPassFocusLost(evt);
-            }
-        });
-        jPanel2.add(errorLabelCPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 200, 20));
-        jPanel2.add(errorLabelFName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 190, 20));
-        jPanel2.add(errorLabelLName, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 210, 20));
-        jPanel2.add(errorLabelPnum, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 200, 20));
-        jPanel2.add(errorLabelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 200, 20));
-
-        errorLabelPass.setToolTipText("Password too short. Must be 8 characters or more");
-        jPanel2.add(errorLabelPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 190, 20));
-
-        username.setToolTipText("Username");
-        username.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        username.setOpaque(false);
-        username.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                usernameFocusLost(evt);
-            }
-        });
-        username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameActionPerformed(evt);
-            }
-        });
-        jPanel2.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 430, 40));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 180, 20));
+        jPanel2.add(errorLabelFName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 190, 20));
+        jPanel2.add(errorLabelLName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 210, 20));
+        jPanel2.add(errorLabelPnum, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, 200, 20));
+        jPanel2.add(errorLabelEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 200, 20));
 
         user.setText("First Name");
-        jPanel2.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 150, 20));
-        jPanel2.add(errorLabelUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 190, 20));
+        jPanel2.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 150, 20));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/close.png"))); // NOI18N
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -282,25 +181,25 @@ public class editDoctor extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, 30, 30));
 
+        idd.setText("ID: ");
+        jPanel2.add(idd, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 30, 40));
+
+        idField.setText("idd");
+        jPanel2.add(idField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 130, 60));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 650, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 593, Short.MAX_VALUE)
+            .addGap(0, 658, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -380,81 +279,6 @@ public class editDoctor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_phonennumActionPerformed
 
-    private void showCPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showCPassMouseClicked
-
-        cpass.setEchoChar((char) 0);
-        showCPass.setVisible(false);
-        hideCPass.setVisible(true);
-    }//GEN-LAST:event_showCPassMouseClicked
-
-    private void hideCPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideCPassMouseClicked
-
-        cpass.setEchoChar('•');
-        hideCPass.setVisible(false);
-        showCPass.setVisible(true);
-    }//GEN-LAST:event_hideCPassMouseClicked
-
-    private void cpassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cpassFocusLost
-
-        String passInput = new String(pass.getPassword());
-        String cPassInput = cpass.getText();
-
-        if (cPassInput.isEmpty()) {
-            cpass.setForeground(Color.RED);
-            errorLabelCPass.setText("This field is required");
-            errorLabelCPass.setForeground(Color.RED);
-        } else if (!passInput.equals(cPassInput)) {
-            cpass.setForeground(Color.RED);
-            errorLabelCPass.setText("Password does not match");
-            errorLabelCPass.setForeground(Color.RED);
-        } else {
-            cpass.setForeground(Color.BLACK);
-            errorLabelCPass.setText("Password matched");
-            errorLabelCPass.setForeground(Color.GREEN);
-        }
-
-        cpass.repaint();
-    }//GEN-LAST:event_cpassFocusLost
-
-    private void showPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPassMouseClicked
-
-        pass.setEchoChar((char) 0);
-        showPass.setVisible(false);
-        hidePass.setVisible(true);
-    }//GEN-LAST:event_showPassMouseClicked
-
-    private void hidePassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hidePassMouseClicked
-
-        pass.setEchoChar('•');
-        hidePass.setVisible(false);
-        showPass.setVisible(true);
-    }//GEN-LAST:event_hidePassMouseClicked
-
-    private void passFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passFocusLost
-
-        String passInput = pass.getText();
-
-        if (passInput.isEmpty()) {
-            pass.setForeground(Color.RED);
-            errorLabelPass.setText("Password is required");
-            errorLabelPass.setForeground(Color.RED);
-        } else if (passInput.length() < 8) {
-
-            pass.setForeground(Color.RED);
-            errorLabelPass.setText("Password too short. Must be 8 characters or more");
-            errorLabelPass.setForeground(Color.RED);
-        } else {
-            pass.setForeground(Color.BLACK);
-            errorLabelPass.setText("Password good");
-            errorLabelPass.setForeground(Color.GREEN);
-        }
-        pass.repaint();
-    }//GEN-LAST:event_passFocusLost
-
-    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         LocalDate actionDate = LocalDate.now();
@@ -466,11 +290,10 @@ public class editDoctor extends javax.swing.JFrame {
 
             connectDB con = new connectDB();
 
-            con.insertData("INSERT INTO user (u_fname, u_lname, u_email, u_pnum, u_user, u_pass, type, status)"
-                    + "VALUES ('" + firstname.getText() + "','" + lastname.getText() + "','" + email.getText() + "',"
-                    + "'" + phonennum.getText() + "','" + username.getText() + "','" + pass.getText() + "','Patient','Pending')");
+            con.updateData("UPDATE user SET u_fname = '" + firstname.getText() + "', u_lname = '" + lastname.getText() + "', u_email = '" + email.getText() + "',"
+                    + "u_pnum = '" + phonennum.getText() + "' WHERE u_id = '" + idField.getText() + "'");
 
-            JOptionPane.showMessageDialog(this, "Patient Added Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Patient Information Updated Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
             this.dispose();
 
@@ -478,7 +301,7 @@ public class editDoctor extends javax.swing.JFrame {
             dM.displayData();
 
             session sess = session.getInstance();
-            
+
             con.insertData("INSERT INTO logs (u_id, action, action_date)"
                     + "VALUES ('" + sess.getU_id() + "', 'Edited account details', '" + actionDate + "', '" + actionTime + "')");
 
@@ -526,36 +349,6 @@ public class editDoctor extends javax.swing.JFrame {
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailActionPerformed
-
-    private void errorLabelCPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_errorLabelCPassFocusLost
-
-    }//GEN-LAST:event_errorLabelCPassFocusLost
-
-    private void usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusLost
-
-        String user = username.getText();
-
-        if (user.isEmpty()) {
-            username.setForeground(Color.RED);
-            errorLabelUser.setText("Username is required");
-            errorLabelUser.setForeground(Color.RED);
-        } else if (usernameExists(user)) {
-
-            username.setForeground(Color.RED);
-            errorLabelUser.setText("Username already exists");
-            errorLabelUser.setForeground(Color.RED);
-        } else {
-            username.setForeground(Color.BLACK);
-            errorLabelUser.setText("Username valid");
-            errorLabelUser.setForeground(Color.GREEN);
-        }
-
-        username.repaint();
-    }//GEN-LAST:event_usernameFocusLost
-
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
-
-    }//GEN-LAST:event_usernameActionPerformed
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
 
@@ -735,40 +528,36 @@ public class editDoctor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new editDoctor().setVisible(true);
+
+                String id = null;
+                String fname = null;
+                String lname = null;
+                String pnum = null;
+                String eMail = null;
+
+                new editDoctor(id, fname, lname, pnum, eMail).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField cpass;
     private javax.swing.JTextField email;
-    private javax.swing.JLabel errorLabelCPass;
     private javax.swing.JLabel errorLabelEmail;
     private javax.swing.JLabel errorLabelFName;
     private javax.swing.JLabel errorLabelLName;
-    private javax.swing.JLabel errorLabelPass;
     private javax.swing.JLabel errorLabelPnum;
-    private javax.swing.JLabel errorLabelUser;
     private javax.swing.JTextField firstname;
-    private javax.swing.JLabel hideCPass;
-    private javax.swing.JLabel hidePass;
+    private javax.swing.JLabel idField;
+    private javax.swing.JLabel idd;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField lastname;
-    private javax.swing.JPasswordField pass;
     private javax.swing.JTextField phonennum;
-    private javax.swing.JLabel showCPass;
-    private javax.swing.JLabel showPass;
     private javax.swing.JLabel user;
-    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }
