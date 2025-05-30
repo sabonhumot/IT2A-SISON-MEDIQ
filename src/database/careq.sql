@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2025 at 12:19 PM
+-- Generation Time: May 30, 2025 at 03:20 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,7 +43,9 @@ CREATE TABLE `appointments` (
 
 INSERT INTO `appointments` (`appointment_id`, `doctor_id`, `date`, `time`, `notes`, `patient_id`, `appointment_status`) VALUES
 (7, 18, '2025-05-05', '09:30', 'i miss u', 14, 'Accepted'),
-(8, 23, '2025-05-05', '15:00', 'kalibanga', 14, 'Accepted');
+(8, 23, '2025-05-05', '15:00', 'kalibanga', 14, 'Accepted'),
+(9, 24, '2025-05-29', '10:00', 'i miss u', 21, 'Accepted'),
+(10, 26, '2025-05-30', '17:00', 'sakit tiyan', 25, 'Accepted');
 
 -- --------------------------------------------------------
 
@@ -56,9 +58,20 @@ CREATE TABLE `diagnosis` (
   `appointment_id` int(11) NOT NULL,
   `doctor` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `d_diagnosis` int(11) NOT NULL,
-  `notes` int(11) NOT NULL
+  `d_diagnosis` varchar(255) NOT NULL,
+  `notes` varchar(255) DEFAULT NULL,
+  `diagnosis_date` date NOT NULL DEFAULT current_timestamp(),
+  `diagnosis_time` time NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `diagnosis`
+--
+
+INSERT INTO `diagnosis` (`diagnosis_id`, `appointment_id`, `doctor`, `patient_id`, `d_diagnosis`, `notes`, `diagnosis_date`, `diagnosis_time`) VALUES
+(1, 9, 24, 21, 'naa kay gamay', 'inom muriatic', '2025-05-29', '10:28:30'),
+(2, 10, 26, 25, 'suka kalibanga ', 'inom plajil', '2025-05-29', '17:00:15'),
+(3, 8, 23, 14, 'naa kay gamay ug dako', 'inom kag muriatic para maayo ka', '2025-05-30', '08:36:16');
 
 -- --------------------------------------------------------
 
@@ -103,7 +116,22 @@ INSERT INTO `logs` (`log_id`, `u_id`, `action`, `action_date`, `action_time`) VA
 (22, 23, 'Removed profile photo', '2025-05-04', '17:05'),
 (23, 23, 'Updated profile photo', '2025-05-04', '17:05:16.533'),
 (24, 14, 'Made an appointment', '2025-05-04', '17:09'),
-(25, 23, 'Accepted an appointment', '2025-05-04', '17:09');
+(25, 23, 'Accepted an appointment', '2025-05-04', '17:09'),
+(26, 23, 'Accepted an appointment', '2025-05-29', '06:49'),
+(27, 1, 'Activated an account', '2025-05-29', '07:44'),
+(28, 21, 'Made an appointment', '2025-05-29', '09:43'),
+(29, 24, 'Accepted an appointment', '2025-05-29', '09:43'),
+(30, 24, 'Made a diagnosis', '2025-05-29', '10:11'),
+(31, 24, 'Made a diagnosis', '2025-05-29', '10:24'),
+(32, 24, 'Made a diagnosis', '2025-05-29', '10:27'),
+(33, 24, 'Made a diagnosis', '2025-05-29', '10:28'),
+(34, 24, 'Made a diagnosis', '2025-05-29', '10:28'),
+(35, 1, 'Activated an account', '2025-05-29', '16:57'),
+(36, 1, 'Activated an account', '2025-05-29', '16:57'),
+(37, 25, 'Made an appointment', '2025-05-29', '16:59'),
+(38, 26, 'Accepted an appointment', '2025-05-29', '16:59'),
+(39, 26, 'Made a diagnosis', '2025-05-29', '17:00'),
+(40, 23, 'Made a diagnosis', '2025-05-30', '08:36');
 
 -- --------------------------------------------------------
 
@@ -157,6 +185,7 @@ CREATE TABLE `user` (
   `u_user` varchar(255) NOT NULL,
   `u_pass` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
+  `specialty` varchar(255) DEFAULT NULL,
   `status` varchar(255) NOT NULL,
   `u_pfp` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -165,16 +194,19 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`u_id`, `u_fname`, `u_lname`, `u_email`, `u_pnum`, `sex`, `age`, `u_user`, `u_pass`, `type`, `status`, `u_pfp`) VALUES
-(1, 'joshua', 'gwapo', 'gwapoolok321@gmail.com', '09090909090', '', '', 'admin', 'JAvlGPq9JyTdtvBO6x2llnRI1+gxwIyPqCKAn3THIKk=', 'administrator', 'active', 'src/user_img/2e83c67ca33455cfacf66717c923eefc.jpg'),
-(14, 'Louigie', 'Borja', 'borjak@gmail.com', '12345678941', '', '', 'pacurebota123', 'bItZVbKg+/xCEuTTrgHxsHkZXfb2acWj7NdFn26kNgY=', 'Patient', 'Active', 'src/user_img/borjak.jpg'),
-(17, 'Bombardino', 'Crocodilo', 'bombardo_c@gmail.com', '09325648245', '', '', 'bombardino', 'S/oy7zM+IizvxEWqQoikMDo53s47de3rVdBbFWJE4ew=', 'Patient', 'Active', 'src/user_img/Bombardiro_crocodilo_cover.jpg'),
-(18, 'Trixie', 'Mae', 'raikonnenwhahah@gmail.com', '09875757654', '', '', 'trixielovenorrie', 'n4HRZCTdUMYTsAuYPmd1V1hDnQ5xBb2KhhAHqE3fdbU=', 'Doctor', 'Active', NULL),
-(19, 'Joshua', 'Gwapo', 'joshuagwapo@gmail.com', '09090945124', '', '', 'joshuagwaps', 'goAXAbp531py6wn5mqsFydzuNz5sqLzXnnTJfz0uGQM=', 'Patient', 'Active', NULL),
-(20, 'Norrie', 'Ugly', 'norrie@gmail.com', '09451265845', '', '', 'norrie', 'KecLiTYwylt2E2ESWrV7Ysd7Vgae2DiT36m58r3Sl7w=', 'Patient', 'Active', NULL),
-(21, 'Arl Joshua', 'Sison', 'arljoshua9@gmail.com', '09912191641', '', '', 'goodboyarl', 'goAXAbp531py6wn5mqsFydzuNz5sqLzXnnTJfz0uGQM=', 'Patient', 'Active', NULL),
-(22, 'Norrie', 'Pangit', 'jopedregosa1980@gmail.com', '09657654567', 'Female', '20', 'norriepangit', 'KecLiTYwylt2E2ESWrV7Ysd7Vgae2DiT36m58r3Sl7w=', 'Patient', 'Active', NULL),
-(23, 'Abdul', 'Jamal', 'arlverstappen911@gmail.com', '09456821595', 'Male', '45', 'abduljamal', 'Al2vBYAyDWFhEGr4I78yTL5GDPwuOBEna9QFv7Iv4sE=', 'Doctor', 'Active', 'src/user_img/Friendly Doctor in Clean Whites.png');
+INSERT INTO `user` (`u_id`, `u_fname`, `u_lname`, `u_email`, `u_pnum`, `sex`, `age`, `u_user`, `u_pass`, `type`, `specialty`, `status`, `u_pfp`) VALUES
+(1, 'joshua', 'gwapo', 'gwapoolok321@gmail.com', '09090909090', '', '', 'admin', 'JAvlGPq9JyTdtvBO6x2llnRI1+gxwIyPqCKAn3THIKk=', 'administrator', NULL, 'active', 'src/user_img/2e83c67ca33455cfacf66717c923eefc.jpg'),
+(14, 'Louigie', 'Borja', 'borjak@gmail.com', '12345678941', 'Male', '24', 'pacurebota123', 'bItZVbKg+/xCEuTTrgHxsHkZXfb2acWj7NdFn26kNgY=', 'Patient', NULL, 'Active', 'src/user_img/borjak.jpg'),
+(17, 'Bombardino', 'Crocodilo', 'bombardo_c@gmail.com', '09325648245', '', '', 'bombardino', 'S/oy7zM+IizvxEWqQoikMDo53s47de3rVdBbFWJE4ew=', 'Patient', NULL, 'Active', 'src/user_img/Bombardiro_crocodilo_cover.jpg'),
+(18, 'Trixie', 'Mae', 'raikonnenwhahah@gmail.com', '09875757654', '', '', 'trixielovenorrie', 'n4HRZCTdUMYTsAuYPmd1V1hDnQ5xBb2KhhAHqE3fdbU=', 'Doctor', NULL, 'Active', NULL),
+(19, 'Joshua', 'Gwapo', 'joshuagwapo@gmail.com', '09090945124', '', '', 'joshuagwaps', 'goAXAbp531py6wn5mqsFydzuNz5sqLzXnnTJfz0uGQM=', 'Patient', NULL, 'Active', NULL),
+(20, 'Norrie', 'Ugly', 'norrie@gmail.com', '09451265845', '', '', 'norrie', 'KecLiTYwylt2E2ESWrV7Ysd7Vgae2DiT36m58r3Sl7w=', 'Patient', NULL, 'Active', NULL),
+(21, 'Arl Joshua', 'Sison', 'arljoshua9@gmail.com', '09912191641', 'Male', '20', 'goodboyarl', 'goAXAbp531py6wn5mqsFydzuNz5sqLzXnnTJfz0uGQM=', 'Patient', NULL, 'Active', NULL),
+(22, 'Norrie', 'Pangit', 'jopedregosa1980@gmail.com', '09657654567', 'Female', '20', 'norriepangit', 'KecLiTYwylt2E2ESWrV7Ysd7Vgae2DiT36m58r3Sl7w=', 'Patient', NULL, 'Active', NULL),
+(23, 'Abdul', 'Jamal', 'arlverstappen911@gmail.com', '09456821595', 'Male', '45', 'abduljamal', 'Al2vBYAyDWFhEGr4I78yTL5GDPwuOBEna9QFv7Iv4sE=', 'Doctor', NULL, 'Active', 'src/user_img/Friendly Doctor in Clean Whites.png'),
+(24, 'Lillix', 'Zyrese', 'zyrese@gmail.com', '09912191641', 'Female', '20', 'lixzyrese', 'GJNeiwA5Vgcl0D9uDQAJK3XjWGannPjZxm1jdsPelng=', 'Doctor', 'Pediatrics', 'Active', NULL),
+(25, 'Jocelyn', 'Pedregosa', 'jopedregosa@gmail.com', '09154789512', 'Female', '44', 'jopedregosa', 'p320u5aJwLQSvAEPWe20bTXQZkWjW2BeuTwlfOhnHus=', 'Patient', '(Choose specialty)', 'Active', NULL),
+(26, 'Arnel', 'Sison', 'arnel@gmail.com', '09568426789', 'Male', '48', 'lingz16', 'zD8xFRc05K5J/QbCm2hvCsq/ketQPDvFTgI6K/rHkjo=', 'Doctor', 'Surgery', 'Active', NULL);
 
 --
 -- Indexes for dumped tables
@@ -218,25 +250,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `diagnosis`
 --
 ALTER TABLE `diagnosis`
-  MODIFY `diagnosis_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `diagnosis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
