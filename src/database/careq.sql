@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2025 at 03:20 AM
+-- Generation Time: May 30, 2025 at 09:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,7 +45,9 @@ INSERT INTO `appointments` (`appointment_id`, `doctor_id`, `date`, `time`, `note
 (7, 18, '2025-05-05', '09:30', 'i miss u', 14, 'Accepted'),
 (8, 23, '2025-05-05', '15:00', 'kalibanga', 14, 'Accepted'),
 (9, 24, '2025-05-29', '10:00', 'i miss u', 21, 'Accepted'),
-(10, 26, '2025-05-30', '17:00', 'sakit tiyan', 25, 'Accepted');
+(10, 26, '2025-05-30', '17:00', 'sakit tiyan', 25, 'Accepted'),
+(12, 23, '2025-05-30', '12:00', 'I have a sharp pain on the lower part of my abdomen and I am vomiting blood', 21, 'Accepted'),
+(13, 24, '2025-06-01', '09:00', 'asdads', 21, 'Pending');
 
 -- --------------------------------------------------------
 
@@ -59,7 +61,7 @@ CREATE TABLE `diagnosis` (
   `doctor` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
   `d_diagnosis` varchar(255) NOT NULL,
-  `notes` varchar(255) DEFAULT NULL,
+  `notes` varchar(9999) DEFAULT NULL,
   `diagnosis_date` date NOT NULL DEFAULT current_timestamp(),
   `diagnosis_time` time NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -69,9 +71,8 @@ CREATE TABLE `diagnosis` (
 --
 
 INSERT INTO `diagnosis` (`diagnosis_id`, `appointment_id`, `doctor`, `patient_id`, `d_diagnosis`, `notes`, `diagnosis_date`, `diagnosis_time`) VALUES
-(1, 9, 24, 21, 'naa kay gamay', 'inom muriatic', '2025-05-29', '10:28:30'),
 (2, 10, 26, 25, 'suka kalibanga ', 'inom plajil', '2025-05-29', '17:00:15'),
-(3, 8, 23, 14, 'naa kay gamay ug dako', 'inom kag muriatic para maayo ka', '2025-05-30', '08:36:16');
+(4, 12, 23, 21, 'Acute Diverticulitis with Suspected Gastrointestinal Bleeding (Hematemesis)', 'Patient complains of sharp, persistent pain localized in the lower left quadrant of the abdomen, accompanied by episodes of vomiting blood (hematemesis). Vital signs show mild tachycardia. No previous history of gastrointestinal issues reported. On physical examination, tenderness and mild guarding were noted in the lower left abdomen. Differential diagnosis includes acute diverticulitis, peptic ulcer with upper GI bleed, or colorectal pathology. Immediate laboratory tests and abdominal imaging (CT scan) are recommended. The patient is advised to be admitted for observation, IV fluids, and further diagnostic work-up including endoscopy.  ', '2025-05-30', '11:50:18');
 
 -- --------------------------------------------------------
 
@@ -131,7 +132,15 @@ INSERT INTO `logs` (`log_id`, `u_id`, `action`, `action_date`, `action_time`) VA
 (37, 25, 'Made an appointment', '2025-05-29', '16:59'),
 (38, 26, 'Accepted an appointment', '2025-05-29', '16:59'),
 (39, 26, 'Made a diagnosis', '2025-05-29', '17:00'),
-(40, 23, 'Made a diagnosis', '2025-05-30', '08:36');
+(40, 23, 'Made a diagnosis', '2025-05-30', '08:36'),
+(41, 21, 'Made an appointment', '2025-05-30', '09:55'),
+(42, 23, 'Accepted an appointment', '2025-05-30', '09:57'),
+(43, 21, 'Made an appointment', '2025-05-30', '11:23'),
+(44, 23, 'Accepted an appointment', '2025-05-30', '11:26'),
+(45, 21, 'Made an appointment', '2025-05-30', '11:28'),
+(46, 23, 'Accepted an appointment', '2025-05-30', '11:45'),
+(47, 23, 'Made a diagnosis', '2025-05-30', '11:48'),
+(48, 23, 'Made a diagnosis', '2025-05-30', '11:50');
 
 -- --------------------------------------------------------
 
@@ -198,12 +207,12 @@ INSERT INTO `user` (`u_id`, `u_fname`, `u_lname`, `u_email`, `u_pnum`, `sex`, `a
 (1, 'joshua', 'gwapo', 'gwapoolok321@gmail.com', '09090909090', '', '', 'admin', 'JAvlGPq9JyTdtvBO6x2llnRI1+gxwIyPqCKAn3THIKk=', 'administrator', NULL, 'active', 'src/user_img/2e83c67ca33455cfacf66717c923eefc.jpg'),
 (14, 'Louigie', 'Borja', 'borjak@gmail.com', '12345678941', 'Male', '24', 'pacurebota123', 'bItZVbKg+/xCEuTTrgHxsHkZXfb2acWj7NdFn26kNgY=', 'Patient', NULL, 'Active', 'src/user_img/borjak.jpg'),
 (17, 'Bombardino', 'Crocodilo', 'bombardo_c@gmail.com', '09325648245', '', '', 'bombardino', 'S/oy7zM+IizvxEWqQoikMDo53s47de3rVdBbFWJE4ew=', 'Patient', NULL, 'Active', 'src/user_img/Bombardiro_crocodilo_cover.jpg'),
-(18, 'Trixie', 'Mae', 'raikonnenwhahah@gmail.com', '09875757654', '', '', 'trixielovenorrie', 'n4HRZCTdUMYTsAuYPmd1V1hDnQ5xBb2KhhAHqE3fdbU=', 'Doctor', NULL, 'Active', NULL),
+(18, 'Trixie', 'Mae', 'raikonnenwhahah@gmail.com', '09875757654', '', '', 'trixielovenorrie', 'n4HRZCTdUMYTsAuYPmd1V1hDnQ5xBb2KhhAHqE3fdbU=', 'Doctor', 'Optomology', 'Active', NULL),
 (19, 'Joshua', 'Gwapo', 'joshuagwapo@gmail.com', '09090945124', '', '', 'joshuagwaps', 'goAXAbp531py6wn5mqsFydzuNz5sqLzXnnTJfz0uGQM=', 'Patient', NULL, 'Active', NULL),
 (20, 'Norrie', 'Ugly', 'norrie@gmail.com', '09451265845', '', '', 'norrie', 'KecLiTYwylt2E2ESWrV7Ysd7Vgae2DiT36m58r3Sl7w=', 'Patient', NULL, 'Active', NULL),
 (21, 'Arl Joshua', 'Sison', 'arljoshua9@gmail.com', '09912191641', 'Male', '20', 'goodboyarl', 'goAXAbp531py6wn5mqsFydzuNz5sqLzXnnTJfz0uGQM=', 'Patient', NULL, 'Active', NULL),
 (22, 'Norrie', 'Pangit', 'jopedregosa1980@gmail.com', '09657654567', 'Female', '20', 'norriepangit', 'KecLiTYwylt2E2ESWrV7Ysd7Vgae2DiT36m58r3Sl7w=', 'Patient', NULL, 'Active', NULL),
-(23, 'Abdul', 'Jamal', 'arlverstappen911@gmail.com', '09456821595', 'Male', '45', 'abduljamal', 'Al2vBYAyDWFhEGr4I78yTL5GDPwuOBEna9QFv7Iv4sE=', 'Doctor', NULL, 'Active', 'src/user_img/Friendly Doctor in Clean Whites.png'),
+(23, 'Abdul', 'Jamal', 'arlverstappen911@gmail.com', '09456821595', 'Male', '45', 'abduljamal', 'Al2vBYAyDWFhEGr4I78yTL5GDPwuOBEna9QFv7Iv4sE=', 'Doctor', 'Internal Medicine', 'Active', 'src/user_img/Friendly Doctor in Clean Whites.png'),
 (24, 'Lillix', 'Zyrese', 'zyrese@gmail.com', '09912191641', 'Female', '20', 'lixzyrese', 'GJNeiwA5Vgcl0D9uDQAJK3XjWGannPjZxm1jdsPelng=', 'Doctor', 'Pediatrics', 'Active', NULL),
 (25, 'Jocelyn', 'Pedregosa', 'jopedregosa@gmail.com', '09154789512', 'Female', '44', 'jopedregosa', 'p320u5aJwLQSvAEPWe20bTXQZkWjW2BeuTwlfOhnHus=', 'Patient', '(Choose specialty)', 'Active', NULL),
 (26, 'Arnel', 'Sison', 'arnel@gmail.com', '09568426789', 'Male', '48', 'lingz16', 'zD8xFRc05K5J/QbCm2hvCsq/ketQPDvFTgI6K/rHkjo=', 'Doctor', 'Surgery', 'Active', NULL);
@@ -217,17 +226,17 @@ INSERT INTO `user` (`u_id`, `u_fname`, `u_lname`, `u_email`, `u_pnum`, `sex`, `a
 --
 ALTER TABLE `appointments`
   ADD PRIMARY KEY (`appointment_id`),
-  ADD KEY `patient_id` (`patient_id`),
-  ADD KEY `doctor_id` (`doctor_id`);
+  ADD KEY `appointments_ibfk_2` (`patient_id`),
+  ADD KEY `appointments_ibfk_3` (`doctor_id`);
 
 --
 -- Indexes for table `diagnosis`
 --
 ALTER TABLE `diagnosis`
   ADD PRIMARY KEY (`diagnosis_id`),
-  ADD KEY `appointment_id` (`appointment_id`),
-  ADD KEY `doctor` (`doctor`),
-  ADD KEY `patient_id` (`patient_id`);
+  ADD KEY `diagnosis_ibfk_1` (`appointment_id`),
+  ADD KEY `diagnosis_ibfk_2` (`doctor`),
+  ADD KEY `diagnosis_ibfk_3` (`patient_id`);
 
 --
 -- Indexes for table `logs`
@@ -250,19 +259,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `diagnosis`
 --
 ALTER TABLE `diagnosis`
-  MODIFY `diagnosis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `diagnosis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -278,16 +287,16 @@ ALTER TABLE `user`
 -- Constraints for table `appointments`
 --
 ALTER TABLE `appointments`
-  ADD CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`patient_id`) REFERENCES `user` (`u_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `appointments_ibfk_3` FOREIGN KEY (`doctor_id`) REFERENCES `user` (`u_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`patient_id`) REFERENCES `user` (`u_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `appointments_ibfk_3` FOREIGN KEY (`doctor_id`) REFERENCES `user` (`u_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `diagnosis`
 --
 ALTER TABLE `diagnosis`
-  ADD CONSTRAINT `diagnosis_ibfk_1` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`appointment_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `diagnosis_ibfk_2` FOREIGN KEY (`doctor`) REFERENCES `appointments` (`doctor_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `diagnosis_ibfk_3` FOREIGN KEY (`patient_id`) REFERENCES `appointments` (`patient_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `diagnosis_ibfk_1` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`appointment_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `diagnosis_ibfk_2` FOREIGN KEY (`doctor`) REFERENCES `appointments` (`doctor_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `diagnosis_ibfk_3` FOREIGN KEY (`patient_id`) REFERENCES `appointments` (`patient_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `logs`
