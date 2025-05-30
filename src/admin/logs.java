@@ -14,6 +14,10 @@ import gfx.RoundedPanel;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.BorderFactory;
@@ -37,7 +41,8 @@ public class logs extends javax.swing.JFrame {
     Color hoverlogoutColor = new Color(250, 249, 246);
 
     public logs() {
-        initComponents();       
+        initComponents();      
+        loadOpenSans();
         displayData();
         emptyData();
     }
@@ -268,6 +273,9 @@ public class logs extends javax.swing.JFrame {
         profilePanel.setBackground(new java.awt.Color(37, 171, 241));
         profilePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         profilePanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profilePanelMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 profilePanelMouseEntered(evt);
             }
@@ -633,9 +641,44 @@ public class logs extends javax.swing.JFrame {
     }//GEN-LAST:event_refreshMouseExited
 
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
-
+        displayData();
     }//GEN-LAST:event_refreshActionPerformed
 
+    private void profilePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilePanelMouseClicked
+        
+        profileMenu pfpM = new profileMenu();
+        pfpM.setVisible(true);
+        
+        this.dispose();
+        
+    }//GEN-LAST:event_profilePanelMouseClicked
+
+    private void loadOpenSans() {
+        try {
+            InputStream fontStream = getClass().getResourceAsStream("/font/OpenSans-VariableFont_wdth,wght.ttf");
+            if (fontStream != null) {
+                Font openSans = Font.createFont(Font.TRUETYPE_FONT, fontStream);
+                GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+                ge.registerFont(openSans);
+
+                jLabel5.setFont(openSans.deriveFont(Font.BOLD, 24));
+                jLabel2.setFont(openSans.deriveFont(Font.BOLD, 12));
+                patient1.setFont(openSans.deriveFont(Font.BOLD, 12));
+                doctor1.setFont(openSans.deriveFont(Font.BOLD, 12));
+                accM.setFont(openSans.deriveFont(Font.BOLD, 12));
+                profile.setFont(openSans.deriveFont(Font.BOLD, 12));
+                profile1.setFont(openSans.deriveFont(Font.BOLD, 12));
+                logout.setFont(openSans.deriveFont(Font.BOLD, 18));
+                refresh.setFont(openSans.deriveFont(Font.BOLD, 12));
+
+            } else {
+                System.err.println("Font file not found!");
+            }
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

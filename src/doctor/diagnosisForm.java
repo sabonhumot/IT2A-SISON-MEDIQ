@@ -162,17 +162,21 @@ public class diagnosisForm extends javax.swing.JFrame {
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 200, 20));
         jPanel2.add(pfp, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 150, 130));
 
+        appointment_id.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         appointment_id.setText("app id");
-        jPanel2.add(appointment_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, 280, 30));
+        jPanel2.add(appointment_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 280, 30));
 
+        name.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         name.setText("name");
-        jPanel2.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 260, 30));
+        jPanel2.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, 260, 30));
 
+        patient_id.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         patient_id.setText("patient_id");
-        jPanel2.add(patient_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 280, 280, 30));
+        jPanel2.add(patient_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, 280, 30));
 
+        p_notes.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         p_notes.setText("patient notes");
-        jPanel2.add(p_notes, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 360, 260, 30));
+        jPanel2.add(p_notes, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 380, 260, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

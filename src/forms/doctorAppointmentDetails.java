@@ -9,13 +9,16 @@ package forms;
  *
  * @author Administrator
  */
-public class appointmentDetails extends javax.swing.JFrame {
+public class doctorAppointmentDetails extends javax.swing.JFrame {
 
     /**
      * Creates new form appointmentDetails
      */
-    public appointmentDetails() {
+    public doctorAppointmentDetails(String appointmentId, String patientName, String sched_date, String sched_time, String notes, String status) {
         initComponents();
+        
+        
+        
     }
 
     /**
@@ -60,20 +63,30 @@ public class appointmentDetails extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(appointmentDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(doctorAppointmentDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(appointmentDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(doctorAppointmentDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(appointmentDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(doctorAppointmentDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(appointmentDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(doctorAppointmentDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new appointmentDetails().setVisible(true);
+                
+                String appId = null;
+                String patientName = null;
+                String sDate = null;
+                String sTime = null;
+                String pNotes = null;
+                String AppStatus = null;
+                
+                new doctorAppointmentDetails(appId, patientName, sDate, sTime, pNotes, AppStatus).setVisible(true);
+                
             }
         });
     }

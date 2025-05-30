@@ -8,6 +8,8 @@ package doctor;
 import careq.logIn;
 import config.connectDB;
 import config.session;
+import forms.editEmail;
+import forms.editPnum;
 import gfx.RoundedPanel;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -98,6 +100,9 @@ public class doctorProfileMenu extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         profile = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        diagnosisPanel = new RoundedPanel(50);
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,6 +115,7 @@ public class doctorProfileMenu extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(250, 249, 246));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setText("Profile Menu");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 300, -1));
 
@@ -118,16 +124,18 @@ public class doctorProfileMenu extends javax.swing.JFrame {
         dboardBG.setBackground(new java.awt.Color(250, 249, 246));
         dboardBG.setLayout(null);
 
+        contact.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         contact.setText("contact");
         dboardBG.add(contact);
         contact.setBounds(50, 480, 280, 30);
 
-        name.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        name.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         name.setText("name");
         dboardBG.add(name);
         name.setBounds(139, 245, 536, 30);
 
+        email.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         email.setText("email");
         dboardBG.add(email);
         email.setBounds(50, 410, 290, 30);
@@ -135,16 +143,29 @@ public class doctorProfileMenu extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 153, 255));
         jLabel8.setText("Edit");
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
         dboardBG.add(jLabel8);
         jLabel8.setBounds(810, 420, 40, 15);
 
+        password.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         password.setText("password");
         dboardBG.add(password);
-        password.setBounds(50, 560, 200, 14);
+        password.setBounds(50, 560, 200, 15);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 153, 255));
         jLabel9.setText("Edit");
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
         dboardBG.add(jLabel9);
         jLabel9.setBounds(810, 490, 40, 15);
 
@@ -159,13 +180,14 @@ public class doctorProfileMenu extends javax.swing.JFrame {
         dboardBG.add(jLabel11);
         jLabel11.setBounds(810, 560, 40, 15);
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel12.setText("Personal Information");
         dboardBG.add(jLabel12);
-        jLabel12.setBounds(30, 340, 230, 22);
+        jLabel12.setBounds(30, 340, 230, 25);
         dboardBG.add(pfp);
         pfp.setBounds(315, 29, 195, 210);
 
+        addpfp.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         addpfp.setForeground(new java.awt.Color(255, 255, 255));
         addpfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         addpfp.setText("Add Profile Picture");
@@ -186,6 +208,7 @@ public class doctorProfileMenu extends javax.swing.JFrame {
         dboardBG.add(addpfp);
         addpfp.setBounds(260, 290, 170, 30);
 
+        removepfp.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         removepfp.setForeground(new java.awt.Color(255, 255, 255));
         removepfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-delete-15.png"))); // NOI18N
         removepfp.setText("Remove");
@@ -215,17 +238,20 @@ public class doctorProfileMenu extends javax.swing.JFrame {
         dboardBG.add(jLabel7);
         jLabel7.setBounds(30, 530, 16, 16);
 
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel13.setText("Email");
         dboardBG.add(jLabel13);
         jLabel13.setBounds(50, 380, 120, 30);
 
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel14.setText("Phone Number");
         dboardBG.add(jLabel14);
         jLabel14.setBounds(50, 450, 190, 20);
 
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel15.setText("Password");
         dboardBG.add(jLabel15);
-        jLabel15.setBounds(50, 530, 200, 14);
+        jLabel15.setBounds(50, 530, 200, 17);
 
         dboard.add(dboardBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 870, 590));
 
@@ -252,6 +278,7 @@ public class doctorProfileMenu extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dashboard_filled.png"))); // NOI18N
         dashboardPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 50));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(250, 249, 246));
         jLabel2.setText("Dashboard");
         dashboardPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 30));
@@ -277,6 +304,7 @@ public class doctorProfileMenu extends javax.swing.JFrame {
         logoutPanel.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 30, 50));
 
         logout.setBackground(new java.awt.Color(73, 138, 172));
+        logout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         logout.setForeground(new java.awt.Color(73, 138, 172));
         logout.setText("Logout");
         logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -302,6 +330,7 @@ public class doctorProfileMenu extends javax.swing.JFrame {
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/appointment-filled.png"))); // NOI18N
         appointmentsPanel.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 50));
 
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(250, 249, 246));
         jLabel19.setText("Appointments");
         appointmentsPanel.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 30));
@@ -332,14 +361,40 @@ public class doctorProfileMenu extends javax.swing.JFrame {
         });
         profilePanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
 
+        profile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         profile.setForeground(new java.awt.Color(250, 249, 246));
         profile.setText("Profile");
         profilePanel.add(profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 100, 50));
 
-        jPanel1.add(profilePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 190, -1));
+        jPanel1.add(profilePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 190, -1));
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        diagnosisPanel.setBackground(new java.awt.Color(37, 171, 241));
+        diagnosisPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        diagnosisPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diagnosisPanelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                diagnosisPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                diagnosisPanelMouseExited(evt);
+            }
+        });
+        diagnosisPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/diagnosis.png"))); // NOI18N
+        diagnosisPanel.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 50));
+
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(250, 249, 246));
+        jLabel22.setText("Diagnosis");
+        diagnosisPanel.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 30));
+
+        jPanel1.add(diagnosisPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 190, 50));
 
         mainbg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 700));
 
@@ -649,6 +704,38 @@ public class doctorProfileMenu extends javax.swing.JFrame {
         profilePanel.setBackground(mainColor);
     }//GEN-LAST:event_profilePanelMouseExited
 
+    private void diagnosisPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diagnosisPanelMouseClicked
+
+        doctorDiagnosis dDg = new doctorDiagnosis();
+
+        dDg.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_diagnosisPanelMouseClicked
+
+    private void diagnosisPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diagnosisPanelMouseEntered
+
+        diagnosisPanel.setBackground(hoverColor);
+    }//GEN-LAST:event_diagnosisPanelMouseEntered
+
+    private void diagnosisPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diagnosisPanelMouseExited
+        diagnosisPanel.setBackground(mainColor);
+    }//GEN-LAST:event_diagnosisPanelMouseExited
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        
+        editEmail eM = new editEmail();
+        eM.setVisible(true);
+        
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        
+        editPnum eP = new editPnum();
+        eP.setVisible(true);
+        
+    }//GEN-LAST:event_jLabel9MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -691,6 +778,7 @@ public class doctorProfileMenu extends javax.swing.JFrame {
     private javax.swing.JPanel dashboardPanel;
     private javax.swing.JPanel dboard;
     private javax.swing.JPanel dboardBG;
+    private javax.swing.JPanel diagnosisPanel;
     private javax.swing.JLabel email;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -704,6 +792,8 @@ public class doctorProfileMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -6,6 +6,7 @@
 package admin;
 
 import admin.crud.addDoctor;
+import admin.crud.editDoctor;
 import gfx.RoundedPanel;
 import gfx.RoundedTextField;
 import java.awt.Color;
@@ -706,7 +707,10 @@ public class doctorMenu extends javax.swing.JFrame {
         String lastName = usersTable.getValueAt(selectedRow, 2).toString();
         String email = usersTable.getValueAt(selectedRow, 3).toString();
         String phone = usersTable.getValueAt(selectedRow, 4).toString();
-
+        
+        editDoctor eDoc = new editDoctor(id, firstName, lastName, email, phone);
+        
+        eDoc.setVisible(true);
         
 
     }//GEN-LAST:event_editActionPerformed
@@ -941,6 +945,7 @@ public class doctorMenu extends javax.swing.JFrame {
                 usersTable.getTableHeader().repaint();
                 usersTable.setFont(openSans.deriveFont(Font.PLAIN, 12));
                 profile.setFont(openSans.deriveFont(Font.BOLD, 12));
+                profile1.setFont(openSans.deriveFont(Font.BOLD, 12));
                 accM.setFont(openSans.deriveFont(Font.BOLD, 12));
                 pAccOV.setFont(openSans.deriveFont(Font.BOLD, 12));
                 refresh.setFont(openSans.deriveFont(Font.BOLD, 12));

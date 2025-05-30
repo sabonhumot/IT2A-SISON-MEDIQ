@@ -991,7 +991,9 @@ public class adminDashB extends javax.swing.JFrame {
                 usersTable.getTableHeader().repaint();
                 usersTable.setFont(openSans.deriveFont(Font.PLAIN, 12));
                 profile.setFont(openSans.deriveFont(Font.BOLD, 12));
+                profile1.setFont(openSans.deriveFont(Font.BOLD, 12));
                 accM.setFont(openSans.deriveFont(Font.BOLD, 12));
+                
 
             } else {
                 System.err.println("Font file not found!");

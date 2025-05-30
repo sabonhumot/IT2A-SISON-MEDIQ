@@ -15,6 +15,10 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -49,10 +53,12 @@ public class accountsMenu extends javax.swing.JFrame {
 
     public accountsMenu() {
         initComponents();
+        loadOpenSans();
         getTotalAcc();
         getPendingAccCount();
         displayData();
         emptyData();
+        
 
     }
 
@@ -766,7 +772,7 @@ public class accountsMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_searchhKeyTyped
 
     private void activateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activateMouseClicked
-      
+
     }//GEN-LAST:event_activateMouseClicked
 
     private void activateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activateActionPerformed
@@ -775,7 +781,7 @@ public class accountsMenu extends javax.swing.JFrame {
         LocalTime atime = LocalTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         String actionTime = atime.format(formatter);
-        
+
         int selectedRow = usersTable.getSelectedRow();
 
         if (selectedRow == -1) {
@@ -786,14 +792,14 @@ public class accountsMenu extends javax.swing.JFrame {
         String id = usersTable.getValueAt(selectedRow, 0).toString();
 
         connectDB con = new connectDB();
-        
+
         session sess = session.getInstance();
 
         con.updateData("UPDATE user SET status = 'Active' WHERE u_id = '" + id + "'");
-        
+
         con.insertData("INSERT INTO logs (u_id, action, action_date, action_time)"
-                        + "VALUES ('"+sess.getU_id()+"', 'Activated an account', '"+actionDate+"', '"+actionTime+"')");
-        
+                + "VALUES ('" + sess.getU_id() + "', 'Activated an account', '" + actionDate + "', '" + actionTime + "')");
+
     }//GEN-LAST:event_activateActionPerformed
 
     private void doctorPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doctorPanelMouseClicked
@@ -830,12 +836,12 @@ public class accountsMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel19MouseEntered
 
     private void logsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logsPanelMouseClicked
-        
+
         logs lo = new logs();
         lo.setVisible(true);
         this.dispose();
-        
-        
+
+
     }//GEN-LAST:event_logsPanelMouseClicked
 
     private void logsPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logsPanelMouseEntered
@@ -884,6 +890,49 @@ public class accountsMenu extends javax.swing.JFrame {
                 }
             }
         });
+    }
+
+    private void loadOpenSans() {
+        try {
+            InputStream fontStream = getClass().getResourceAsStream("/font/OpenSans-VariableFont_wdth,wght.ttf");
+            if (fontStream != null) {
+                Font openSans = Font.createFont(Font.TRUETYPE_FONT, fontStream);
+                GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+                ge.registerFont(openSans);
+                // Now you can use the font:
+                jLabel2.setFont(openSans.deriveFont(Font.BOLD, 12));
+                jLabel5.setFont(openSans.deriveFont(Font.BOLD, 24));
+                logout.setFont(openSans.deriveFont(Font.BOLD, 18));
+
+                patient1.setFont(openSans.deriveFont(Font.BOLD, 12));
+
+                doctor1.setFont(openSans.deriveFont(Font.BOLD, 12));
+
+                penAcc.setFont(openSans.deriveFont(Font.BOLD, 18));
+                totalAcc.setFont(openSans.deriveFont(Font.BOLD, 18));
+                accOV.setFont(openSans.deriveFont(Font.BOLD, 18));
+                TA.setFont(openSans.deriveFont(Font.BOLD, 20));
+//                dboardBG.setFont(openSans.deriveFont(Font.BOLD, 18));
+//                D.setFont(openSans.deriveFont(Font.BOLD, 20));
+//                P.setFont(openSans.deriveFont(Font.BOLD, 20));
+//                AA.setFont(openSans.deriveFont(Font.BOLD, 20));
+                PA.setFont(openSans.deriveFont(Font.BOLD, 20));
+                usersTable.getTableHeader().setFont(openSans.deriveFont(Font.BOLD, 15));
+                usersTable.getTableHeader().revalidate();
+                usersTable.getTableHeader().repaint();
+                usersTable.setFont(openSans.deriveFont(Font.PLAIN, 12));
+                profile.setFont(openSans.deriveFont(Font.BOLD, 12));
+                profile1.setFont(openSans.deriveFont(Font.BOLD, 12));
+                accM.setFont(openSans.deriveFont(Font.BOLD, 12));              
+                refresh.setFont(openSans.deriveFont(Font.BOLD, 12));
+                activate.setFont(openSans.deriveFont(Font.BOLD, 12));
+
+            } else {
+                System.err.println("Font file not found!");
+            }
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

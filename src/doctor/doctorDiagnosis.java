@@ -82,6 +82,7 @@ public class doctorDiagnosis extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         mainbg.setBackground(new java.awt.Color(245, 245, 245));
         mainbg.setMinimumSize(new java.awt.Dimension(1017, 620));
@@ -92,7 +93,8 @@ public class doctorDiagnosis extends javax.swing.JFrame {
         dboardHeader.setBackground(new java.awt.Color(250, 249, 246));
         dboardHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setText("Doctor Dashboard");
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel5.setText("Diagnosis Page");
         dboardHeader.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 330, -1));
 
         dboard.add(dboardHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 70));
@@ -114,7 +116,7 @@ public class doctorDiagnosis extends javax.swing.JFrame {
         dboardBG.add(scroll);
         scroll.setBounds(22, 92, 820, 460);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/print.png"))); // NOI18N
         jButton1.setText("Print");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +125,7 @@ public class doctorDiagnosis extends javax.swing.JFrame {
             }
         });
         dboardBG.add(jButton1);
-        jButton1.setBounds(720, 40, 110, 40);
+        jButton1.setBounds(30, 40, 110, 40);
 
         dboard.add(dboardBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 860, 590));
 
@@ -150,6 +152,7 @@ public class doctorDiagnosis extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dashboard_filled.png"))); // NOI18N
         dashboardPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 50));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(250, 249, 246));
         jLabel2.setText("Dashboard");
         dashboardPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 30));
@@ -174,6 +177,7 @@ public class doctorDiagnosis extends javax.swing.JFrame {
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/diagnosis.png"))); // NOI18N
         diagnosisPanel.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 50));
 
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(250, 249, 246));
         jLabel19.setText("Diagnosis");
         diagnosisPanel.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 30));
@@ -199,6 +203,7 @@ public class doctorDiagnosis extends javax.swing.JFrame {
         logoutPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 30, 50));
 
         logout.setBackground(new java.awt.Color(73, 138, 172));
+        logout.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         logout.setForeground(new java.awt.Color(73, 138, 172));
         logout.setText("Logout");
         logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -224,6 +229,7 @@ public class doctorDiagnosis extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/appointment-filled.png"))); // NOI18N
         appointmentsPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 50));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(250, 249, 246));
         jLabel4.setText("Appointments");
         appointmentsPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 30));
@@ -254,6 +260,7 @@ public class doctorDiagnosis extends javax.swing.JFrame {
         });
         profilePanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 30, 50));
 
+        profile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         profile.setForeground(new java.awt.Color(250, 249, 246));
         profile.setText("Profile");
         profilePanel.add(profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 100, 50));

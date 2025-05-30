@@ -25,6 +25,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -364,34 +365,37 @@ public class appointmentForm extends javax.swing.JFrame {
             timeError.setForeground(Color.RED);
         } else {
             try {
+                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
                 LocalTime starting_time = LocalTime.of(9, 0);
                 LocalTime end_time = LocalTime.of(17, 0);
-                LocalTime current_time = LocalTime.now();
+                LocalTime inputTime = LocalTime.parse(time.getText().trim(), timeFormatter);
 
-                LocalTime inputTime = LocalTime.parse(time.getText().trim());
+                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                LocalDate inputDate = LocalDate.parse(date.getText().trim(), dateFormatter); // Using your date input
+
+                LocalDateTime inputDateTime = LocalDateTime.of(inputDate, inputTime);
+                LocalDateTime now = LocalDateTime.now();
 
                 if (inputTime.isBefore(starting_time) || inputTime.isAfter(end_time)) {
                     time.setForeground(Color.RED);
-                    timeError.setText("Time must be between 9:00 and 17:00");
+                    timeError.setText("Time must be between 09:00 and 17:00");
                     timeError.setForeground(Color.RED);
-                } else if (inputTime.isBefore(current_time)) {
-
+                } else if (inputDateTime.isBefore(now)) {
                     time.setForeground(Color.RED);
                     timeError.setText("Time should not be in the past");
                     timeError.setForeground(Color.RED);
-
                 } else {
                     time.setForeground(Color.BLACK);
                     timeError.setText("");
                     timeError.setForeground(Color.BLACK);
                 }
+
             } catch (DateTimeParseException ex) {
                 time.setForeground(Color.RED);
                 timeError.setText("Invalid time format. Use HH:mm.");
                 timeError.setForeground(Color.RED);
                 System.out.println("" + ex);
             }
-
         }
 
         time.repaint();
@@ -498,38 +502,38 @@ public class appointmentForm extends javax.swing.JFrame {
             time.setForeground(Color.RED);
             timeError.setText("Please set a valid time");
             timeError.setForeground(Color.RED);
-            valid = false;
         } else {
             try {
+                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
                 LocalTime starting_time = LocalTime.of(9, 0);
                 LocalTime end_time = LocalTime.of(17, 0);
-                LocalTime current_time = LocalTime.now();
+                LocalTime inputTime = LocalTime.parse(time.getText().trim(), timeFormatter);
 
-                LocalTime inputTime = LocalTime.parse(time.getText().trim());
+                LocalDate inputDate = LocalDate.parse(date.getText().trim(), dateFormatter); // Using your date input
+
+                LocalDateTime inputDateTime = LocalDateTime.of(inputDate, inputTime);
+                LocalDateTime now = LocalDateTime.now();
 
                 if (inputTime.isBefore(starting_time) || inputTime.isAfter(end_time)) {
                     time.setForeground(Color.RED);
-                    timeError.setText("Time must be between 9:00 and 17:00");
+                    timeError.setText("Time must be between 09:00 and 17:00");
                     timeError.setForeground(Color.RED);
-                    valid = false;
-                } else if (inputTime.isBefore(current_time)) {
+                } else if (inputDateTime.isBefore(now)) {
                     time.setForeground(Color.RED);
-                    timeError.setText("Time must not be in the past");
+                    timeError.setText("Time should not be in the past");
                     timeError.setForeground(Color.RED);
-                    valid = false;
                 } else {
                     time.setForeground(Color.BLACK);
                     timeError.setText("");
                     timeError.setForeground(Color.BLACK);
                 }
+
             } catch (DateTimeParseException ex) {
                 time.setForeground(Color.RED);
                 timeError.setText("Invalid time format. Use HH:mm.");
                 timeError.setForeground(Color.RED);
                 System.out.println("" + ex);
-                valid = false;
             }
-
         }
 
         time.repaint();

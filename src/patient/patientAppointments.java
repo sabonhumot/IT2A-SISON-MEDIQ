@@ -83,6 +83,9 @@ public class patientAppointments extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         profile = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        diagnosisPanel = new RoundedPanel(50);
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +98,7 @@ public class patientAppointments extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(250, 249, 246));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setText("Appointments Page");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 300, -1));
 
@@ -128,6 +132,7 @@ public class patientAppointments extends javax.swing.JFrame {
         dboardBG.add(scroll);
         scroll.setBounds(22, 92, 820, 370);
 
+        add.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         add.setForeground(new java.awt.Color(255, 255, 255));
         add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         add.setText("Add Appointment");
@@ -143,8 +148,9 @@ public class patientAppointments extends javax.swing.JFrame {
             }
         });
         dboardBG.add(add);
-        add.setBounds(420, 53, 200, 30);
+        add.setBounds(510, 40, 200, 40);
 
+        delete.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         delete.setForeground(new java.awt.Color(255, 255, 255));
         delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-delete-15.png"))); // NOI18N
         delete.setText("Delete");
@@ -160,8 +166,9 @@ public class patientAppointments extends javax.swing.JFrame {
             }
         });
         dboardBG.add(delete);
-        delete.setBounds(630, 53, 83, 30);
+        delete.setBounds(730, 40, 110, 40);
 
+        refresh.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         refresh.setForeground(new java.awt.Color(255, 255, 255));
         refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/refresh.png"))); // NOI18N
         refresh.setText("Refresh");
@@ -180,7 +187,7 @@ public class patientAppointments extends javax.swing.JFrame {
             }
         });
         dboardBG.add(refresh);
-        refresh.setBounds(30, 53, 130, 30);
+        refresh.setBounds(20, 40, 130, 40);
 
         dboard.add(dboardBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 860, 490));
 
@@ -191,7 +198,7 @@ public class patientAppointments extends javax.swing.JFrame {
         appCount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel4.add(appCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 70, 30));
 
-        qwe.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        qwe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         qwe.setText("Total Appointments");
         jPanel4.add(qwe, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 300, 20));
 
@@ -220,6 +227,7 @@ public class patientAppointments extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dashboard_filled.png"))); // NOI18N
         dashboardPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 50));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(250, 249, 246));
         jLabel2.setText("Dashboard");
         dashboardPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 30));
@@ -245,6 +253,7 @@ public class patientAppointments extends javax.swing.JFrame {
         logoutPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 30, 50));
 
         logout.setBackground(new java.awt.Color(73, 138, 172));
+        logout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         logout.setForeground(new java.awt.Color(73, 138, 172));
         logout.setText("Logout");
         logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -270,6 +279,7 @@ public class patientAppointments extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/appointment-filled.png"))); // NOI18N
         bookAppointment.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 50));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(250, 249, 246));
         jLabel4.setText("Appointments");
         bookAppointment.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 30));
@@ -300,14 +310,40 @@ public class patientAppointments extends javax.swing.JFrame {
         });
         profilePanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
 
+        profile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         profile.setForeground(new java.awt.Color(250, 249, 246));
         profile.setText("Profile");
         profilePanel.add(profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 100, 50));
 
-        jPanel1.add(profilePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 190, -1));
+        jPanel1.add(profilePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 190, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        diagnosisPanel.setBackground(new java.awt.Color(37, 171, 241));
+        diagnosisPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        diagnosisPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                diagnosisPanelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                diagnosisPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                diagnosisPanelMouseExited(evt);
+            }
+        });
+        diagnosisPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/diagnosis.png"))); // NOI18N
+        diagnosisPanel.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 50));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(250, 249, 246));
+        jLabel19.setText("Diagnosis");
+        diagnosisPanel.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 30));
+
+        jPanel1.add(diagnosisPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 190, 50));
 
         mainbg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 700));
 
@@ -619,6 +655,26 @@ public class patientAppointments extends javax.swing.JFrame {
         getDataCounts();
     }//GEN-LAST:event_refreshActionPerformed
 
+    private void diagnosisPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diagnosisPanelMouseClicked
+
+        patientDiagnosis pDg = new patientDiagnosis();
+
+        pDg.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_diagnosisPanelMouseClicked
+
+    private void diagnosisPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diagnosisPanelMouseEntered
+
+        diagnosisPanel.setBackground(hoverColor);
+
+    }//GEN-LAST:event_diagnosisPanelMouseEntered
+
+    private void diagnosisPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diagnosisPanelMouseExited
+
+        diagnosisPanel.setBackground(mainColor);
+    }//GEN-LAST:event_diagnosisPanelMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -664,8 +720,11 @@ public class patientAppointments extends javax.swing.JFrame {
     private javax.swing.JPanel dboard;
     private javax.swing.JPanel dboardBG;
     private javax.swing.JButton delete;
+    private javax.swing.JPanel diagnosisPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

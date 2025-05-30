@@ -916,6 +916,7 @@ public class patientMenu extends javax.swing.JFrame {
                 doctor1.setFont(openSans.deriveFont(Font.BOLD, 12));
                 accM.setFont(openSans.deriveFont(Font.BOLD, 12));
                 profile.setFont(openSans.deriveFont(Font.BOLD, 12));
+                profile1.setFont(openSans.deriveFont(Font.BOLD, 12));
                 logout.setFont(openSans.deriveFont(Font.BOLD, 18));
                 P.setFont(openSans.deriveFont(Font.BOLD, 18));
                 refresh.setFont(openSans.deriveFont(Font.BOLD, 12));

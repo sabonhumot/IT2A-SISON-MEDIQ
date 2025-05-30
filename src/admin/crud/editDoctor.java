@@ -181,9 +181,11 @@ public class editDoctor extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, 30, 30));
 
+        idd.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         idd.setText("ID: ");
         jPanel2.add(idd, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 30, 40));
 
+        idField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         idField.setText("idd");
         jPanel2.add(idField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 130, 60));
 

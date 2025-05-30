@@ -59,7 +59,7 @@ public class reports {
             System.setProperty("jasper.reports.compile.class.debug", "true");
             System.setProperty("jasper.reports.compile.class.path", System.getProperty("java.class.path"));
             System.setProperty("jasper.reports.compile.temp", "C:/DEBUG");
-            JasperReport report = JasperCompileManager.compileReport("src/diagnosis_report/test6.jrxml");
+            JasperReport report = JasperCompileManager.compileReport("src/diagnosis_report/diagnosis_report.jrxml");
 
             Map<String, Object> params = new java.util.HashMap<>();
             // Convert String to Integer to match JRXML parameter type

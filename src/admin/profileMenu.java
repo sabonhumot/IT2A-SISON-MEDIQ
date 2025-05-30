@@ -17,6 +17,8 @@ import java.io.InputStream;
 import javax.swing.JOptionPane;
 import patient.changePassForm;
 import config.connectDB;
+import forms.editEmail;
+import forms.editPnum;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -188,6 +190,12 @@ public class profileMenu extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 153, 255));
         jLabel10.setText("Edit");
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
         dboardBG.add(jLabel10);
         jLabel10.setBounds(810, 420, 40, 15);
 
@@ -198,12 +206,19 @@ public class profileMenu extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 153, 255));
         jLabel11.setText("Edit");
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
         dboardBG.add(jLabel11);
         jLabel11.setBounds(810, 490, 40, 15);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 153, 255));
         jLabel12.setText("Edit");
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel12MouseClicked(evt);
@@ -782,6 +797,23 @@ public class profileMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_removepfpActionPerformed
 
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        
+        
+        editEmail editEm = new editEmail();
+        
+        editEm.setVisible(true);
+        
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        
+        editPnum editP = new editPnum();
+        editP.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jLabel11MouseClicked
+
     private void loadOpenSans() {
         try {
             InputStream fontStream = getClass().getResourceAsStream("/font/OpenSans-VariableFont_wdth,wght.ttf");
@@ -792,14 +824,20 @@ public class profileMenu extends javax.swing.JFrame {
 
                 jLabel5.setFont(openSans.deriveFont(Font.BOLD, 24));
                 name.setFont(openSans.deriveFont(Font.BOLD, 18));
-                email.setFont(openSans.deriveFont(Font.BOLD, 18));
-                contact.setFont(openSans.deriveFont(Font.BOLD, 18));
+                jLabel14.setFont(openSans.deriveFont(Font.BOLD, 18));
+                jLabel18.setFont(openSans.deriveFont(Font.BOLD, 18));
+                jLabel20.setFont(openSans.deriveFont(Font.BOLD, 18));
+                email.setFont(openSans.deriveFont(Font.PLAIN, 12));
+                contact.setFont(openSans.deriveFont(Font.PLAIN, 12));
                 jLabel2.setFont(openSans.deriveFont(Font.BOLD, 12));
                 patient1.setFont(openSans.deriveFont(Font.BOLD, 12));
                 doctor1.setFont(openSans.deriveFont(Font.BOLD, 12));
                 accM.setFont(openSans.deriveFont(Font.BOLD, 12));
                 profile.setFont(openSans.deriveFont(Font.BOLD, 12));
+                profile1.setFont(openSans.deriveFont(Font.BOLD, 12));
                 logout.setFont(openSans.deriveFont(Font.BOLD, 18));
+                addpfp.setFont(openSans.deriveFont(Font.BOLD, 12));
+                removepfp.setFont(openSans.deriveFont(Font.BOLD, 12));
 
             } else {
                 System.err.println("Font file not found!");
